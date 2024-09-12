@@ -1,0 +1,183 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.calculator {
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    width: 320px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark body {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.dark .calculator {
+    background-color: #333;
+}
+
+.dark #display {
+    background-color: #222;
+    color: white;
+}
+
+.dark .btn {
+    background-color: #444;
+    color: white;
+}
+
+.dark .btn:hover {
+    background-color: #555;
+}
+
+.light body {
+    background-color: #f0f0f0;
+    color: #000;
+}
+
+.light .calculator {
+    background-color: #ffffff;
+}
+
+.light #display {
+    background-color: #eeeeee;
+    color: black;
+}
+
+.light .btn {
+    background-color: #ddd;
+    color: black;
+}
+
+.light .btn:hover {
+    background-color: #ccc;
+}
+
+#display {
+    justify-content: center;
+    height: 40px;
+    text-align: right;
+    font-size: 18px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.buttons {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.btn {
+    padding: 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.btn:active {
+    transform: scale(0.95);
+}
+
+.theme-toggle {
+    grid-column: span 4;
+    background-color: #333;
+    color: white;
+    font-size: 24px;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.name {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff6347;
+    text-align: center;
+    margin-bottom: 5px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.song-lyrics {
+    font-size: 16px;
+    font-style: italic;
+    color: #20b2aa;
+    text-align: center;
+    margin-bottom: 15px;
+    padding: 0 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+@media (max-width: 600px) {
+    .calculator {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .btn {
+        font-size: 16px;
+        padding: 15px;
+    }
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: url('background.jpg') no-repeat center center fixed; 
+    background-size: cover; 
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+.calculator {
+    background-color: rgba(51, 51, 51, 0.8); 
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    width: 320px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+.light .calculator {
+    background-color: rgba(255, 255, 255, 0.8); 
+}
+
+#display {
+    background-color: rgba(34, 34, 34, 0.9); 
+    color: white;
+    justify-content: center;
+    height: 40px;
+    text-align: right;
+    font-size: 18px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.light #display {
+    background-color: rgba(238, 238, 238, 0.9); 
+}
