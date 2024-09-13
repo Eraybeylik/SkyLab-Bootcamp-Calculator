@@ -6,29 +6,58 @@ function clearDisplay() {
     document.getElementById("display").value = "";
 }
 
+function addToHistory(expression, result) {
+    const historyList = document.getElementById("history-list");
+    const newEntry = document.createElement("li");
+    newEntry.textContent = `${expression} = ${result}`;
+    historyList.appendChild(newEntry);
+}
+
 function calculateResult() {
     const display = document.getElementById("display");
     try {
-        if (display.value.includes('%')) {
+        let result;
+        const expression = display.value; 
+        if (display.value.includes('^')) {
+            const parts = display.value.split('^');
+            const base = parseFloat(parts[0]);
+            const exponent = parseFloat(parts[1]);
+            if (!isNaN(base) && !isNaN(exponent)) {
+                result = calculateExponent(base, exponent);
+            } else {
+                result = "HATA!";
+            }
+        } else if (display.value.includes('%')) {
             const parts = display.value.split('%');
             const base = parseFloat(parts[0]);
             const percentage = parseFloat(parts[1]);
             if (!isNaN(base) && !isNaN(percentage)) {
-                display.value = (base * (percentage / 100)).toString();
+                result = (base * (percentage / 100)).toString();
             } else {
-                display.value = "HATA!";
+                result = "HATA!";
             }
         } else {
-            display.value = eval(display.value);
+            result = eval(display.value);
         }
+
+        display.value = result;
+        addToHistory(expression, result);
+
     } catch (error) {
         display.value = "HATA!";
     }
 }
 
+
 function calculateSquareRoot() {
     const display = document.getElementById("display");
-    display.value = Math.sqrt(eval(display.value));
+    const result = Math.sqrt(eval(display.value));
+    addToHistory(`√${display.value}`, result); 
+    display.value = result;
+}
+
+function calculateExponent(base, exponent) {
+    return Math.pow(base, exponent);
 }
 
 function toggleTheme() {
@@ -51,7 +80,6 @@ function toggleTheme() {
     }
 }
 
-
 document.addEventListener("keydown", function(event) {
     const key = event.key;
     const display = document.getElementById("display");
@@ -68,58 +96,3 @@ document.addEventListener("keydown", function(event) {
         calculateResult();
     }
 });
-
-function addToHistory(result) {
-    const history = document.getElementById("history");
-    const display = document.getElementById("display");
-    const newEntry = document.createElement("div");
-    newEntry.textContent = `${display.value} = ${result}`;
-    history.appendChild(newEntry);
-}
-
-function calculateResult() {
-    const display = document.getElementById("display");
-    try {
-        const result = eval(display.value);
-        addToHistory(result); 
-        display.value = result;
-    } catch (error) {
-        display.value = "HATA!";
-    }
-}
-
-function calculateExponent(base, exponent) {
-    return Math.pow(base, exponent);
-}
-
-function calculateResult() {
-    const display = document.getElementById("display");
-    try {
-        if (display.value.includes('^')) {
-            const parts = display.value.split('^');
-            const base = parseFloat(parts[0]);
-            const exponent = parseFloat(parts[1]);
-            if (!isNaN(base) && !isNaN(exponent)) {
-                display.value = calculateExponent(base, exponent);
-            } else {
-                display.value = "HATA!";
-            }
-        } else if (display.value.includes('%')) {
-            const parts = display.value.split('%');
-            const base = parseFloat(parts[0]);
-            const percentage = parseFloat(parts[1]);
-            if (!isNaN(base) && !isNaN(percentage)) {
-                display.value = (base * (percentage / 100)).toString();
-            } else {
-                display.value = "HATA!";
-            }
-        } else {
-            display.value = eval(display.value);
-        }
-    } catch (error) {
-        display.value = "HATA!";
-    }
-}
-
-
-
